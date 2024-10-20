@@ -1,5 +1,5 @@
-<%= render :partial => 'spree/admin/shared/product_sub_menu' %>
-<%= render :partial => 'spree/admin/shared/product_tabs', :locals => {:current => "Digital Versions"} %>
+<%= render 'spree/admin/shared/product_tabs', current: 'Digital Versions' %>
+<%= render 'spree/shared/error_messages', target: @product %>
 
 <% if @product.has_variants? %>
   <% for variant in @product.variants_including_master do %>
