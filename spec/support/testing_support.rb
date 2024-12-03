@@ -4,7 +4,7 @@ module SolidusDigital
   module TestingSupport
     module Helpers
       def image(filename)
-        File.open(SolidusDigital::Engine.root + "spec/fixtures" + filename)
+        File.open("#{SolidusDigital::Engine.root}/spec/fixtures/#{filename}")
       end
 
       def upload_image(filename)

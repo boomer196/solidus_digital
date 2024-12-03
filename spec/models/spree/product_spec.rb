@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe Spree::Product do
   let(:product) { create(:product) }
-  let(:digitals) { 3.times.map { create(:digital) } }
+  let(:digitals) { create_list(:digital, 3) }
   let!(:variants) do
     digitals.map { |d| create(:variant, product: product, digitals: [d]) }
   end
