@@ -6,7 +6,8 @@ module Spree
     has_many :digital_links, dependent: :destroy
     has_many :drm_records, dependent: :destroy
 
-    has_attached_file :attachment, path: ":rails_root/private/digitals/:id/:basename.:extension", s3_permissions: :private, s3_headers: { content_disposition: 'attachment' }
+    has_attached_file :attachment, path: ":rails_root/private/digitals/:id/:basename.:extension",
+      s3_permissions: :private, s3_headers: { content_disposition: 'attachment' }
     do_not_validate_attachment_file_type :attachment
     validates_attachment_presence :attachment
 
