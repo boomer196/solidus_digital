@@ -11,11 +11,11 @@ RSpec.describe Spree::Admin::DigitalsController do
     render_views
 
     context "with variants" do
-      let(:digitals) { 3.times.map { create(:digital) } }
+      let(:digitals) { create_list(:digital, 3) }
       let(:variants_with_digitals) do
         digitals.map { |d| create(:variant, product: product, digitals: [d]) }
       end
-      let(:variants_without_digitals) { 3.times.map { create(:variant, product: product) } }
+      let(:variants_without_digitals) { Array.new(3) { create(:variant, product: product) } }
 
       it "displays an empty page when no digitals exist" do
         variants_without_digitals

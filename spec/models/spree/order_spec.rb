@@ -8,7 +8,7 @@ RSpec.describe Spree::Order do
     let(:order) { create(:order) }
 
     it "adds digital Variants of quantity 1 to an order" do
-      variants = 3.times.map { create(:variant, digitals: [create(:digital)]) }
+      variants = Array.new(3) { create(:variant, digitals: [create(:digital)]) }
       variants.each { |v| order.contents.add(v, 1) }
 
       expect(order.line_items.first.variant).to eq(variants[0])
@@ -54,20 +54,20 @@ RSpec.describe Spree::Order do
   describe '#digital?/#some_digital?' do
     let(:order) { create(:order) }
     let(:digital_order) {
-      variants = 3.times.map { create(:variant, digitals: [create(:digital)]) }
+      variants = Array.new(3) { create(:variant, digitals: [create(:digital)]) }
       variants.each { |v| order.contents.add(v, 1) }
       order
     }
 
     let(:mixed_order) {
-      variants = 2.times.map { create(:variant, digitals: [create(:digital)]) }
+      variants = Array.new(2) { create(:variant, digitals: [create(:digital)]) }
       variants << create(:variant)
       variants.each { |v| order.contents.add(v, 1) }
       order
     }
 
     let(:non_digital_order) {
-      variants = 3.times.map { create(:variant) }
+      variants = create_list(:variant, 3)
       variants.each { |v| order.contents.add(v, 1) }
       order
     }
@@ -90,14 +90,14 @@ RSpec.describe Spree::Order do
 
   describe '#digital_line_items' do
     let(:order) { create(:order) }
-    let(:digital_order_digitals) { 3.times.map { create(:digital) } }
+    let(:digital_order_digitals) { create_list(:digital, 3) }
     let(:digital_order) {
       variants = digital_order_digitals.map { |d| create(:variant, digitals: [d]) }
       variants.each { |v| order.contents.add(v, 1) }
       order
     }
 
-    let(:mixed_order_digitals) { 2.times.map { create(:digital) } }
+    let(:mixed_order_digitals) { create_list(:digital, 2) }
     let(:mixed_order) {
       variants = mixed_order_digitals.map { |d| create(:variant, digitals: [d]) }
       variants << create(:variant)
@@ -106,7 +106,7 @@ RSpec.describe Spree::Order do
     }
 
     let(:non_digital_order) {
-      variants = 3.times.map { create(:variant) }
+      variants = create_list(:variant, 3)
       variants.each { |v| order.contents.add(v, 1) }
       order
     }
@@ -135,7 +135,7 @@ RSpec.describe Spree::Order do
   end
 
   describe '#digital_links' do
-    let(:mixed_order_digitals) { 2.times.map { create(:digital) } }
+    let(:mixed_order_digitals) { create_list(:digital, 2) }
     let(:mixed_order) {
       order = create(:order)
       variants = mixed_order_digitals.map { |d| create(:variant, digitals: [d]) }
