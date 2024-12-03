@@ -8,9 +8,9 @@ class SampleDrmMaker
   end
 
   def create!
-    if @drm_record.digital.attachment.exists?
-      @drm_record.attachment = @drm_record.digital.attachment
-    end
+    return unless @drm_record.digital.attachment.exists?
+
+    @drm_record.attachment = @drm_record.digital.attachment
   end
 end
 
