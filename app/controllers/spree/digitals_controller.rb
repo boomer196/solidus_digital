@@ -23,7 +23,7 @@ module Spree
     end
 
     def digital_link
-      @link ||= DigitalLink.find_by!(secret: params[:secret])
+      @digital_link ||= DigitalLink.find_by!(secret: params[:secret])
     end
 
     def attachment
