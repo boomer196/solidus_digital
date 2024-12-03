@@ -156,9 +156,9 @@ RSpec.describe Spree::Order do
   end
 
   describe '#generate_digital_links' do
-    let(:digital_variant) { create(:variant, digitals: [create(:digital)]) }
-
     subject(:links) { order.digital_links }
+
+    let(:digital_variant) { create(:variant, digitals: [create(:digital)]) }
 
     context "when order in complete state" do
       let(:order) {
